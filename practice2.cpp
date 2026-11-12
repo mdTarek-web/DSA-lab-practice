@@ -1,29 +1,48 @@
 #include <iostream>
-#include <algorithm>
+#include <vector>
 using namespace std;
 
-int main() {
-    string s;
-    cin >> s;
+vector<int> findAllOccurrences(int arr[], int n, int target) {
 
-    
-    string numbers = "";
+    vector<int> indices;
 
-    for (int i = 0; i < s.length(); i += 2) {
-        numbers += s[i];
-    }
+    for (int i = 0; i < n; i++) {
 
-    sort(numbers.begin(), numbers.end());
-
-    for (int i = 0; i < numbers.length(); ++i) {
-        cout << numbers[i];
-        if (i != numbers.length() - 1) {
-            cout << "+";
+        if (arr[i] == target) {
+            indices.push_back(i);
         }
     }
 
-    cout << endl;
-    return 0;
+    return indices;
 }
 
+int main() {
 
+    int n;
+
+    cout << "Enter array size: ";
+    cin >> n;
+
+    int arr[n];
+
+    cout << "Enter array elements: ";
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    int target;
+
+    cout << "Enter target: ";
+    cin >> target;
+
+    vector<int> result = findAllOccurrences(arr, n, target);
+
+    cout << "Indices: ";
+
+    for (int index : result) {
+        cout << index << " ";
+    }
+
+    return 0;
+}
